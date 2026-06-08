@@ -15,10 +15,6 @@ export function PaymentVerificationPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null)
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
   const fetchData = async () => {
     try {
       const [bookingsData, venuesData] = await Promise.all([
@@ -33,6 +29,11 @@ export function PaymentVerificationPage() {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchData()
+  }, [])
 
   const handleVerify = async (bookingId: string, status: 'Approved' | 'Rejected') => {
     try {

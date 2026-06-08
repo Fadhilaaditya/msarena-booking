@@ -32,16 +32,6 @@ export function ScheduleManagementPage() {
     return date.toISOString().split('T')[0]
   })
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    if (selectedDate) {
-      fetchSchedules()
-    }
-  }, [selectedDate])
-
   const fetchData = async () => {
     try {
       const [venuesData] = await Promise.all([
@@ -66,6 +56,18 @@ export function ScheduleManagementPage() {
       console.error('Failed to fetch schedules:', error)
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    if (selectedDate) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+      fetchSchedules()
+    }
+  }, [selectedDate])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

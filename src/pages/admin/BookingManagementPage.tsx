@@ -17,10 +17,6 @@ export function BookingManagementPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState<string>('all')
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
   const fetchData = async () => {
     try {
       const [bookingsData, venuesData] = await Promise.all([
@@ -35,6 +31,11 @@ export function BookingManagementPage() {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchData()
+  }, [])
 
   const handleStatusUpdate = async (bookingId: string, newStatus: BookingStatus) => {
     try {

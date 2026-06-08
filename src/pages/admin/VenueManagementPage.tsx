@@ -28,10 +28,6 @@ export function VenueManagementPage() {
     facilities: [''],
   })
 
-  useEffect(() => {
-    fetchVenues()
-  }, [])
-
   const fetchVenues = async () => {
     try {
       const data = await venueService.getVenues()
@@ -42,6 +38,11 @@ export function VenueManagementPage() {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchVenues()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

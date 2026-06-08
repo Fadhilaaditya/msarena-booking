@@ -29,14 +29,15 @@ export function HomePage() {
   }, [allVenues])
 
   useEffect(() => {
-    setFilterPriceRange([priceBounds.min, priceBounds.max])
-  }, [priceBounds])
-
-  useEffect(() => {
     const fetchAll = async () => {
       try {
         const data = await venueService.getVenues()
         setAllVenues(data)
+        if (data.length > 0) {
+          const prices = data.map((v) => v.price)
+          const max = Math.ceil(Math.max(...prices) / 50000) * 50000
+          setFilterPriceRange([0, max])
+        }
       } catch (error) {
         console.error('Failed to fetch venues:', error)
       } finally {
