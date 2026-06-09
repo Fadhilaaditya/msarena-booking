@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ArrowLeft } from 'lucide-react'
 
 const loginSchema = z.object({
   email: z.string().email('Email tidak valid'),
@@ -50,7 +51,15 @@ export function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Admin Login</CardTitle>
+          <Button
+            variant="ghost"
+            className="absolute left-4 top-4"
+            onClick={() => navigate('/')}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Beranda
+          </Button>
+          <CardTitle className="text-2xl mt-4">Admin Login</CardTitle>
           <CardDescription>Masuk ke panel admin</CardDescription>
         </CardHeader>
         <CardContent>

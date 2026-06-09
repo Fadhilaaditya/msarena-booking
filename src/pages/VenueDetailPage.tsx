@@ -18,7 +18,7 @@ export function VenueDetailPage() {
   const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  const dates = Array.from({ length: 7 }, (_, i) => {
+  const dates = Array.from({ length: 30 }, (_, i) => {
     const date = new Date()
     date.setDate(date.getDate() + i)
     return date.toISOString().split('T')[0]
@@ -157,6 +157,8 @@ export function VenueDetailPage() {
                   const d = new Date(date)
                   const dayName = d.toLocaleDateString('id-ID', { weekday: 'short' })
                   const dayNum = d.getDate()
+                  const monthName = d.toLocaleDateString('id-ID', { month: 'short' })
+                  const isFirst = d.getDate() === 1
                   return (
                     <button
                       key={date}
@@ -164,12 +166,13 @@ export function VenueDetailPage() {
                         setSelectedDate(date)
                         setSelectedSchedule(null)
                       }}
-                      className={`flex flex-col items-center min-w-[60px] p-2 rounded-lg border transition-colors ${
+                      className={`flex flex-col items-center min-w-[50px] p-2 rounded-lg border transition-colors ${
                         selectedDate === date
                           ? 'bg-primary text-primary-foreground'
                           : 'hover:bg-gray-100'
                       }`}
                     >
+                      {isFirst && <span className="text-[10px] text-gray-500">{monthName}</span>}
                       <span className="text-xs">{dayName}</span>
                       <span className="font-bold">{dayNum}</span>
                     </button>

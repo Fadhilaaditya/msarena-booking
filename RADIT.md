@@ -187,7 +187,7 @@ Kedua warning ini adalah pattern yang umum dan tidak mempengaruhi fungsi aplikas
 
 ### 5.2 Black Box Testing
 
-Pengujian berdasarkan fungsi tanpa melihat kode internal.
+Pengujian berdasarkan fungsi tanpa melihat kode internal. Pengujian ini memastikan setiap fitur bekerja sesuai yang diharapkan pengguna, mulai dari pencarian venue, filter, booking, hingga admin panel.
 
 | ID | Fitur | Input | Expected Output | Status |
 |----|-------|-------|-----------------|--------|
@@ -229,7 +229,7 @@ Pengujian berdasarkan fungsi tanpa melihat kode internal.
 
 ### 5.3 White Box Testing
 
-Pengujian berdasarkan struktur kode internal.
+Pengujian berdasarkan struktur kode internal. Pengujian ini memastikan logika di dalam setiap komponen dan service berjalan benar, seperti state management, conditional rendering, dan response MSW handler.
 
 | ID | Komponen | Kondisi Pengujian | Expected Result | Status |
 |----|----------|-------------------|-----------------|--------|
@@ -266,7 +266,7 @@ Pengujian berdasarkan struktur kode internal.
 
 ### 5.4 User Acceptance Testing (UAT)
 
-Pengujian kepuasan pengguna akhir.
+Pengujian kepuasan pengguna akhir. Setiap skenario dinilai dari sudut pandang pengguna, apakah fitur mudah digunakan, informasi ditampilkan dengan jelas, dan alur kerja sesuai harapan.
 
 | No | Skenario | Kriteria Keberhasilan | Rating (1-5) | Catatan |
 |----|----------|----------------------|--------------|---------|
@@ -292,7 +292,7 @@ Pengujian kepuasan pengguna akhir.
 
 ### 5.5 Regression Testing
 
-Pengujian ulang untuk memastikan perubahan tidak merusak fitur yang sudah ada.
+Pengujian ulang untuk memastikan perubahan atau penambahan fitur baru tidak merusak fitur yang sudah ada sebelumnya. Setiap kali ada update, fitur lama dicek ulang apakah masih berfungsi normal.
 
 | No | Fitur | Skenario Regression | Status |
 |----|-------|---------------------|--------|
@@ -317,7 +317,7 @@ Pengujian ulang untuk memastikan perubahan tidak merusak fitur yang sudah ada.
 
 ### 5.6 Object-Oriented Testing (OOT)
 
-Pengujian berbasis objek pada komponen React dan service layer.
+Pengujian berbasis objek pada komponen React dan service layer. Pengujian ini memastikan setiap objek (data model, store, service) memiliki behavior yang benar dan transisi state berjalan sesuai urutan yang diharapkan.
 
 | No | Objek | Metode/Behavior | Test Case | Status |
 |----|-------|-----------------|-----------|--------|
@@ -344,6 +344,8 @@ Pengujian berbasis objek pada komponen React dan service layer.
 ---
 
 ### 5.7 Ringkasan Hasil Testing
+
+Ringkasan seluruh hasil pengujian dari semua jenis testing. Digunakan untuk melihat gambaran besar apakah sistem sudah memenuhi standar kualitas sebelum di-deploy.
 
 | Jenis Testing | Total | Pass | Fail | Pass Rate |
 |---------------|-------|------|------|-----------|
@@ -392,93 +394,17 @@ Pengujian berbasis objek pada komponen React dan service layer.
 
 ### 5.8 Strategi Implementasi Sistem
 
-| Tahap | Aktivitas | Output | Timeline |
-|-------|-----------|--------|----------|
-| 1. Persiapan | Setup environment, instalasi dependencies | Project skeleton | Hari 1-2 |
-| 2. Fondasi | Type definitions, store, utilities, MSW setup | Core infrastructure | Hari 3-4 |
-| 3. API Layer | MSW handlers, service layer | Mock API functional | Hari 5-6 |
-| 4. UI Components | Reusable components, layouts | Component library | Hari 7-8 |
-| 5. Public Pages | HomePage, VenueDetail, Booking, Success | Public flow complete | Hari 9-11 |
-| 6. Admin Pages | Login, Dashboard, CRUD, Verification | Admin flow complete | Hari 12-14 |
-| 7. Integration | Routes, auth guards, error handling | Fully integrated | Hari 15-16 |
-| 8. Testing | Black box, white box, UAT, regression | Test reports | Hari 17-19 |
-| 9. Deployment | Vercel configuration & deploy | Production URL | Hari 20 |
+Pengembangan sistem dilakukan dalam 9 tahap selama kurang lebih 20 hari. Tahap awal berupa persiapan dan pembangunan fondasi selama 4 hari, mencakup setup project, instalasi dependencies, dan pembuatan struktur dasar aplikasi. Tahap selanjutnya berupa pembangunan API layer dan komponen UI selama 4 hari, di mana dibangun mock backend dan komponen-komponen yang bisa digunakan ulang.
+
+Tahap pembuatan halaman dilakukan selama 6 hari, dibagi menjadi halaman untuk pengunjung (beranda, detail venue, booking) dan halaman admin (login, dashboard, manajemen). Tahap integrasi dilakukan selama 2 hari untuk menghubungkan semua halaman dan memastikan alur kerja berjalan lancar. Tahap pengujian dilakukan selama 3 hari untuk memastikan semua fitur berfungsi dengan baik. Tahap terakhir adalah deployment selama 1 hari.
 
 ### 5.9 Prosedur Pemeliharaan Sistem
 
-#### 5.9.1 Jenis Pemeliharaan
+Pemeliharaan sistem terdiri dari empat jenis. Corrective yaitu perbaikan ketika ada bug atau kesalahan. Adaptive yaitu penyesuaian ketika ada teknologi baru atau perubahan browser. Perfective yaitu penambahan fitur baru atau peningkatan performa. Preventive yaitu pencegahan masalah melalui review kode dan pengecekan keamanan secara berkala.
 
-| Jenis | Deskripsi | Frekuensi | Contoh |
-|-------|-----------|-----------|--------|
-| **Corrective** | Perbaikan bug/kesalahan | Sesuai kebutuhan | Fix filter yang tidak berfungsi |
-| **Adaptive** | Penyesuaian dengan lingkungan baru | Bulanan | Update dependencies, kompatibilitas browser |
-| **Perfective** | Peningkatan fitur/performa | Berkala | Tambah fitur calendar view, optimasi loading |
-| **Preventive** | Pencegahan masalah masa depan | Berkala | Code review, security audit, testing |
+Prosedur pemeliharaan dimulai dari identifikasi masalah, lalu analisa dampaknya, perencanaan perubahan, implementasi perbaikan, pengujian ulang untuk memastikan tidak ada fitur yang rusak, dokumentasi perubahan, dan terakhir deploy ke production.
 
-#### 5.9.2 Prosedur Pemeliharaan
-
-```
-┌─────────────────────────────────────────┐
-│  1. Identifikasi Masalah/Kebutuhan      │
-│     - Bug report dari user              │
-│     - Feature request                   │
-│     - Performance issue                 │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  2. Analisa Dampak                      │
-│     - Komponen yang terpengaruh         │
-│     - Risk assessment                   │
-│     - Estimasi waktu                    │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  3. Perencanaan Perubahan               │
-│     - Buat branch baru                  │
-│     - Dokumentasi perubahan             │
-│     - Review dengan tim                 │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  4. Implementasi                        │
-│     - Coding perubahan                  │
-│     - Unit testing                      │
-│     - Code review                       │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  5. Testing Regression                  │
-│     - Jalankan semua test case          │
-│     - Pastikan tidak ada fitur rusak    │
-│     - UAT jika ada perubahan UI         │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  6. Dokumentasi                         │
-│     - Update changelog                  │
-│     - Update API documentation          │
-│     - Update user guide                 │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌─────────────────────────────────────────┐
-│  7. Deploy                              │
-│     - Merge ke main branch              │
-│     - Auto deploy ke Vercel             │
-│     - Monitoring post-deploy            │
-└─────────────────────────────────────────┘
-```
-
-#### 5.9.3 Monitoring & Maintenance Schedule
-
-| Aktivitas | Frekuensi | Tools |
-|-----------|-----------|-------|
-| Code Review | Setiap pull request | GitHub |
-| Automated Testing | Setiap commit | GitHub Actions |
-| Performance Monitoring | Harian | Vercel Analytics |
-| Dependency Update | Bulanan | npm audit, Dependabot |
-| Security Scan | Bulanan | npm audit |
-| Full Regression Test | Setiap release | Manual + Automated |
-| Documentation Update | Setiap perubahan besar | Markdown |
+Pemeliharaan dilakukan secara berkala: review kode setiap ada perubahan, pengecekan otomatis setiap commit, pemantauan performa harian, update komponen bulanan, pengujian penuh setiap rilis, dan update dokumentasi setiap ada perubahan besar.
 
 ---
 

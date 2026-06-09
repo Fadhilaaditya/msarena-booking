@@ -101,7 +101,12 @@ const seedVenues: Venue[] = [
 
 const generateSchedules = (): Schedule[] => {
   const schedules: Schedule[] = []
-  const dates = ['2026-06-04', '2026-06-05', '2026-06-06', '2026-06-07', '2026-06-08']
+  const today = new Date()
+  const dates = Array.from({ length: 30 }, (_, i) => {
+    const date = new Date()
+    date.setDate(today.getDate() + i)
+    return date.toISOString().split('T')[0]
+  })
   const timeSlots = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00']
 
   for (const venue of seedVenues) {
@@ -130,7 +135,7 @@ const seedBookings: Booking[] = [
     customerName: 'Budi Santoso',
     email: 'budi@email.com',
     phoneNumber: '081234567890',
-    bookingDate: '2026-06-04',
+    bookingDate: new Date(Date.now() + 86400000).toISOString().split('T')[0],
     scheduleId: '',
     paymentProof: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
     status: 'Waiting Verification',
@@ -141,7 +146,7 @@ const seedBookings: Booking[] = [
     customerName: 'Andi Wijaya',
     email: 'andi@email.com',
     phoneNumber: '085678901234',
-    bookingDate: '2026-06-05',
+    bookingDate: new Date(Date.now() + 172800000).toISOString().split('T')[0],
     scheduleId: '',
     status: 'Pending Payment',
   },
